@@ -50,7 +50,7 @@
         <section class="recommendations_section">
             <div class="wrapper">
                 <div class="recommendations">
-                    <h2>Рекомендованные ЖК <span><img class="r_img" src="img/fire.png"></span></h2>
+                    <h2>Рекомендованные ЖК</h2>
                     <div class="r_items">
                         <!-- AJAX ответ -->
                     </div>

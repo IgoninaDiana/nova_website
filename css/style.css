@@ -180,10 +180,6 @@ header {
     flex-direction: column;
 }
 
-.r_img {
-    height: 30px;
-}
-
 .r_items {
     display: flex;
     justify-content: space-between;
