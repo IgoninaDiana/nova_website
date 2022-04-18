@@ -5,6 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>NOVA - Достоверная база данных о продаже и аренде жилой недвижимости</title>
         <link rel="stylesheet" href="css/style.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.4/mobile-detect.min.js"></script>
+        <script>
+            let detect = new MobileDetect(window.navigator.userAgent);
+            if (detect.mobile() != null) {
+                $(location).attr('href', '/m');
+            }
+        </script>
     </head>
     <body>
         <header>
