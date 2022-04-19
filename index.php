@@ -1,3 +1,6 @@
+<?
+    require 'orm/db.php';
+?>
 <!DOCTYPE html>
 <html lang="ru">
     <head>

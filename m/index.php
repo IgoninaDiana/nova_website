@@ -1,3 +1,6 @@
+<?
+    require '../orm/db.php';
+?>
 <!DOCTYPE html>
 <html lang="ru">
     <head>
@@ -15,6 +18,26 @@
         </script>
     </head>
     <body>
+        <section class="menu_section menu_off">
+            <div class="menu_w wrapper">
+                <div class="menu">
+                    <a class="m_a" href="#" id="menu_off"><img class="ma_img" src="../img/line_left.svg">Закрыть</a>
+                    <?php if (!isset($_SESSION['user'])) : ?>
+                        <div class="ma_user">
+                            <img class="mau_img" src="https://imgholder.ru/100x100/8493a8/adb9ca&text=IMAGE+HOLDER&font=kelson">
+                            <div class="mau_text">
+                                <h4 class="maut_h4">Герасимов Андрей</h4>
+                                <p class="maut_p">Личный кабинет</p>
+                            </div>
+                        </div>
+                        <a class="m_a" href="#"><img class="ma_img" src="../img/log_out.svg">Выйти</a>
+                    <?php else : ?>
+                        <a class="m_a" href="#"><img class="ma_img" src="../img/log_up.svg">Войти</a>
+                    <?php endif ?>
+                    <h3 class="ma_h3">Меню</h3>
+                </div>
+            </div>
+        </section>
         <section class="button_section">
             <div class="button_w wrapper">
                 <a class="button button_on" href="#">Разместить объявление</a>
@@ -24,7 +47,7 @@
             <div class="wrapper">
                 <div class="header">
                     <img src="../img/logo_1.svg">
-                    <img src="../img/menu.svg">
+                    <img id="menu_on" src="../img/menu.svg">
                 </div>
             </div>
         </header>
