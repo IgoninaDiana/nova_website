@@ -12,7 +12,7 @@
             $news = R::findAll('news', 'ORDER BY id DESC LIMIT '.$_GET['limit']);
             $new_arr = array();
             foreach ($news as $new) {
-                array_push($new_arr, ['id'=>$new['id'], 'rubrika'=>$new['rubrika'], 'title'=>$new['title'], 'text'=>$new['text'], 'photo'=>$new['photo'], 'autor'=>$new['autor'], 'date'=>$new['date']]);
+                array_push($new_arr, ['id'=>$new['id'], 'rubrika'=>$new['rubrika'], 'title'=>$new['title'], 'text'=>$new['text'], 'photo'=>$new['photo'], 'autor'=>$new['autor'], 'date'=>$new['date'], 'views'=>$new['views']]);
             }
             $arr = ['status'=>'ok', 'news'=>$new_arr];
             $json = json_encode($arr);
@@ -21,7 +21,7 @@
             $news = R::findAll('news', 'ORDER BY id DESC');
             $new_arr = array();
             foreach ($news as $new) {
-                array_push($new_arr, ['id'=>$new['id'], 'rubrika'=>$new['rubrika'], 'title'=>$new['title'], 'text'=>$new['text'], 'photo'=>$new['photo'], 'autor'=>$new['autor'], 'date'=>$new['date']]);
+                array_push($new_arr, ['id'=>$new['id'], 'rubrika'=>$new['rubrika'], 'title'=>$new['title'], 'text'=>$new['text'], 'photo'=>$new['photo'], 'autor'=>$new['autor'], 'date'=>$new['date'], 'views'=>$new['views']]);
             }
             $arr = ['status'=>'ok', 'news'=>$new_arr];
             $json = json_encode($arr);

@@ -20,20 +20,7 @@
     <body>
         <section class="menu_section menu_off">
             <div class="menu">
-                <a class="m_a" href="#" onclick="menu_off()"><img class="ma_img" src="../img/line_left.svg">Закрыть</a>
-                <?php if (!isset($_SESSION['user'])) : ?>
-                    <div class="ma_user">
-                        <img class="mau_img" src="https://imgholder.ru/100x100/8493a8/adb9ca&text=IMAGE+HOLDER&font=kelson">
-                        <div class="mau_text">
-                            <h4 class="maut_h4">Герасимов Андрей</h4>
-                            <p class="maut_p">Личный кабинет</p>
-                        </div>
-                    </div>
-                    <a class="m_a" href="#"><img class="ma_img" src="../img/log_out.svg">Выйти</a>
-                <?php else : ?>
-                    <a class="m_a" href="#"><img class="ma_img" src="../img/log_up.svg">Войти</a>
-                <?php endif ?>
-                <h3 class="ma_h3">Меню</h3>
+                <?php require 'menu.php'; ?>
             </div>
         </section>
         <section class="button_section">
@@ -44,7 +31,7 @@
         <header>
             <div class="wrapper">
                 <div class="header">
-                    <img src="../img/logo_1.svg">
+                    <a href="/"><img src="../img/logo_1.svg"></a>
                     <img onclick="menu_on()" class="h_menu" src="../img/menu.svg">
                 </div>
             </div>
@@ -134,11 +121,10 @@
                 dataType: 'json',
                 data: {query: 'news', limit: 5},
                 success: function(data) {
-                    console.log(data);
                     $('.n_items').empty();
                     let i = 0;
                     while (i < data['news'].length) {
-                        $('.n_items').append('<a class="n_item" href="/news?id=' + data['news'][i]['id'] + '"><p class="ni_p">' + data['news'][i]['date'] + '</p><h4 class="ni_h4">' + data['news'][i]['title'] + '</h4></a>');
+                        $('.n_items').append('<a class="n_item" href="/m/news?id=' + data['news'][i]['id'] + '"><div class="ni_info"><p class="ni_p">' + data['news'][i]['date'] + '</p><div class="ni_views"><img class="niv_img" src="../img/views.svg"><p>' + data['news'][i]['views'] + '</p></div></div><h4 class="ni_h4">' + data['news'][i]['title'] + '</h4></a>');
                         i++;
                     }
                 }
