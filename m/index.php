@@ -19,23 +19,21 @@
     </head>
     <body>
         <section class="menu_section menu_off">
-            <div class="menu_w wrapper">
-                <div class="menu">
-                    <a class="m_a" href="#" id="menu_off"><img class="ma_img" src="../img/line_left.svg">Закрыть</a>
-                    <?php if (!isset($_SESSION['user'])) : ?>
-                        <div class="ma_user">
-                            <img class="mau_img" src="https://imgholder.ru/100x100/8493a8/adb9ca&text=IMAGE+HOLDER&font=kelson">
-                            <div class="mau_text">
-                                <h4 class="maut_h4">Герасимов Андрей</h4>
-                                <p class="maut_p">Личный кабинет</p>
-                            </div>
+            <div class="menu">
+                <a class="m_a" href="#" onclick="menu_off()"><img class="ma_img" src="../img/line_left.svg">Закрыть</a>
+                <?php if (!isset($_SESSION['user'])) : ?>
+                    <div class="ma_user">
+                        <img class="mau_img" src="https://imgholder.ru/100x100/8493a8/adb9ca&text=IMAGE+HOLDER&font=kelson">
+                        <div class="mau_text">
+                            <h4 class="maut_h4">Герасимов Андрей</h4>
+                            <p class="maut_p">Личный кабинет</p>
                         </div>
-                        <a class="m_a" href="#"><img class="ma_img" src="../img/log_out.svg">Выйти</a>
-                    <?php else : ?>
-                        <a class="m_a" href="#"><img class="ma_img" src="../img/log_up.svg">Войти</a>
-                    <?php endif ?>
-                    <h3 class="ma_h3">Меню</h3>
-                </div>
+                    </div>
+                    <a class="m_a" href="#"><img class="ma_img" src="../img/log_out.svg">Выйти</a>
+                <?php else : ?>
+                    <a class="m_a" href="#"><img class="ma_img" src="../img/log_up.svg">Войти</a>
+                <?php endif ?>
+                <h3 class="ma_h3">Меню</h3>
             </div>
         </section>
         <section class="button_section">
@@ -47,7 +45,7 @@
             <div class="wrapper">
                 <div class="header">
                     <img src="../img/logo_1.svg">
-                    <img id="menu_on" src="../img/menu.svg">
+                    <img onclick="menu_on()" class="h_menu" src="../img/menu.svg">
                 </div>
             </div>
         </header>
@@ -162,6 +160,14 @@
                 }
                 scrollPos = st;
             });
+
+            function menu_on() {
+                    $('.menu_section').fadeIn(300).removeClass('menu_off');
+            }
+
+            function menu_off() {
+                    $('.menu_section').fadeOut(300).addClass('menu_off');
+            }
         </script>
     </body>
 </html>
