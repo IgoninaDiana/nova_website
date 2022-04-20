@@ -6,7 +6,11 @@
         $new_views->views = $new->views + 1;
         R::store($new_views);
     } else {
-        $news = R::findAll('news');
+        if (isset($_GET['rubrika'])) {
+            $news = R::findAll('news', 'WHERE rubrika = "'.$_GET['rubrika'].'" ORDER BY id DESC');
+        } else {
+            $news = R::findAll('news', 'ORDER BY id DESC');
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -21,7 +25,7 @@
         <script>
             let detect = new MobileDetect(window.navigator.userAgent);
             if (detect.mobile() == null) {
-                $(location).attr('href', '/');
+                $(location).attr('href', '/news');
             }
         </script>
     </head>
@@ -59,19 +63,31 @@
                 </div>
             </section>
         <?php else : ?>
-            <!-- <section class="news_section">
+            <section class="news_new_section">
                 <div class="wrapper">
-                    <div class="news">
-                        <div class="ns_items">
+                    <div class="news_new">
+                        <h3>Новости <?php if (isset($_GET['rubrika'])) : ?><span class="nn_span">/ <?php echo $_GET['rubrika'] ?></span><?php endif ?></h3>
+                        <div class="nn_items">
                             <?php foreach ($news as $new) : ?>
-                                <div class="n_item">
-
-                                </div>
+                                <a class="nn_item" href="/m/news?id=<?=$new['id']?>">
+                                    <img class="nni_img" src="../../img/news/<?=$new['photo']?>" alt="">
+                                    <div class="nni_text">
+                                        <h4 class="nnit_h4"><?=$new['title']?></h4>
+                                        <p class="nnit_text"></p>
+                                        <div class="nnit_info">
+                                            <p><?=$new['date']?></p>
+                                            <div class="nnit_views">
+                                                <img class="nnitv_img" src="../../img/views.svg">
+                                                <p><?=$new['views']?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
                             <?php endforeach ?>
                         </div>
                     </div>
                 </div>
-            </section> -->
+            </section>
         <?php endif ?>
         <section class="info_site_section">
             <div class="wrapper">
