@@ -1,4 +1,4 @@
-<?
+<?php
     require '../orm/db.php';
     if (isset($_GET['id'])) {
         $new = R::findOne('news', 'WHERE id = "'.$_GET['id'].'"');

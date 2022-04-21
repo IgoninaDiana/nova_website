@@ -10,7 +10,7 @@
     </div>
     <a class="m_a" href="#"><img class="ma_img" src="../../img/log_out.svg">Выйти</a>
 <?php else : ?>
-    <a class="m_a" href="#"><img class="ma_img" src="../../img/log_up.svg">Войти</a>
+    <a class="m_a" href="/m/lk"><img class="ma_img" src="../../img/log_up.svg">Войти</a>
 <?php endif ?>
 <h3 class="m_h3">Меню</h3>
 <a class="m_a" href="/">Главная</a>
