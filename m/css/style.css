@@ -60,6 +60,8 @@ p, h1, h2, h3, h4, h5 {
 }
 
 .ma_user {
+    text-decoration: none;
+    color: #000;
     display: flex;
     align-items: center;
     background-color: #fff;
@@ -70,6 +72,7 @@ p, h1, h2, h3, h4, h5 {
 }
 
 .mau_img {
+    width: 60px;
     height: 60px;
     object-fit: cover;
     border-radius: 50px;
@@ -100,7 +103,10 @@ p, h1, h2, h3, h4, h5 {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
     margin-bottom: 10px;
 }
 
@@ -504,6 +510,89 @@ header {
     color: #0468FF;
     font-size: 13px;
     margin-top: 10px;
+}
+
+/* --- */
+
+.profile_section {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+}
+
+.p_user {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.pu_img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+.pu_text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.put_p {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.p_phone, .p_email {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.pp_p, .pe_p {
+    font-size: 13px;
+}
+
+.pp_h4, .pe_h4 {
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.pp_a, .pe_a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: #0468FF;
+}
+
+.p_button {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0468FF;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 /* --- */

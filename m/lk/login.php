@@ -127,7 +127,7 @@
                                         dataType: 'json',
                                         data: {auch: 'reg', name: document.querySelector('#name').value, surname: document.querySelector('#surname').value, email: document.querySelector('#email').value, pass: document.querySelector('#pass_two').value},
                                         success: function(data) {
-                                            $(location).attr('href', '/m/lk')
+                                            $(location).attr('href', '/m/lk');
                                         }
                                     });
                                 } else {
