@@ -35,6 +35,16 @@
             </div>
         </header>
         <?php if (isset($_GET['apartment'])) : ?>
+        <section class="apartment_modal" onclick="modal_windows_off()">
+            <div class="a_info_modal">
+                <p class="aim_user_name"><?php echo $apartment['user_name']?></p>
+                <p class="aim_user_phone"><?php echo $apartment['user_phone']?></p>
+            </div>
+            <div class="a_text_modal">
+                <p class="atem_p"><img class="atemp_img" src="../img/warning.png"><b>Это временный номер</b></p>
+                <p>Он защищает исполнителя от нежелательных звонков. Не сохраняйте его: скоро телефон заменится на другой.</p>
+            </div>
+        </section>
             <section class="apartment_section">
                 <div class="wrapper">
                     <div class="apartment">
@@ -42,18 +52,31 @@
                         <img class="ap_photo" src="../img/apartments/<?php echo $apartment['photo'] ?>">
                         <div class="ap_info">
                             <h2 class="api_name"><?php echo $apartment['name'] ?></h2>
-                            <p class="api_address"><?php echo $apartment['address']?></p>
+                            <p class="api_address"><b><?php echo $apartment['address']?></b></p>
                             <p class="api_description"><?php echo $apartment['description']?></p>
                             <p class="api_price"><?php echo number_format($apartment['price'], 0, ',', ' ') ?> ₽ <?php if ($apartment['status'] == 'Аренда') { echo '<span>/ мес.</span>'; } ?></p>
-                            <div class="api_views">
-                                <img class="apiv_img" src="../img/views.svg">
+                            <div class="api_users_info">
+                                <img class="apiu_views" src="../img/views.svg">
                                 <p><?php echo $apartment['views'] ?></p>
+                                <img class="apiu_hearts" src="../img/hearts.svg">
+                                <p>0</p>
                             </div>
-                            <button class="api_button">Связаться</button>
+                            <div class="api_buttons">
+                                <button class="api_button" onclick="modal_windows_on()">Связаться</button>
+                                <button class="api_like"></button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
+            <script>
+                function modal_windows_on() {
+                    $('.apartment_modal').addClass('apartment_modal_on');
+                }
+                function modal_windows_off() {
+                    $('.apartment_modal').removeClass('apartment_modal_on');
+                }
+            </script>
         <?php else : ?>
 
         <?php endif ?>
