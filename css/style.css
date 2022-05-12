@@ -440,12 +440,102 @@ header {
 .apartment_section {
     display: flex;
     justify-content: center;
-    margin-top: 80px;
+    margin-top: 100px;
 }
 
 .apartment {
     display: flex;
-    flex-direction: column;
+    align-items: flex-start;
+}
+
+.ap_status {
+    position: absolute;
+    margin-top: 20px;
+    border-radius: 0 5px 5px 0;
+    background-color: #0468FF;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-bottom: 10px;
+    z-index: 10;
+}
+
+.ap_photo {
+    width: 60%;
+    height: 500px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.ap_info {
+    width: 40%;
+    margin-left: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+}
+
+.api_name {
+    margin-bottom: 10px;
+}
+
+.api_address {
+    margin-bottom: 10px;
+}
+
+.api_description {
+    
+}
+
+.api_price {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.api_views {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #00000099;
+    margin-bottom: 10px;
+}
+
+.apiv_img {
+    margin-right: 5px;
+}
+
+.api_button {
+    border: none;
+    border-radius: 5px;
+    background-color: #0468FF;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-weight: bold;
+    font-size: 17px;
+    width: 100%;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.api_button:hover {
+    background-color: #004fc6;
 }
 
 /* --- */
