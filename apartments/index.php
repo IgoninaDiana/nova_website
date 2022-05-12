@@ -20,8 +20,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.4.4/mobile-detect.min.js"></script>
         <script>
             let detect = new MobileDetect(window.navigator.userAgent);
-            if (detect.mobile() != null) {
-                $(location).attr('href', '/m/apartments');
+            if (detect.mobile() == !null) {
+                var get = '<?php if (isset($_GET["apartment"])) {echo "?apartment=".$_GET["apartment"];}; ?>';
+                $(location).attr('href', '/m/apartments' + get);
             }
         </script>
     </head>
@@ -33,13 +34,29 @@
                 </div>
             </div>
         </header>
-        <section class="apartment_section">
-            <div class="wrapper">
-                <div class="apartment">
-                    
+        <?php if (isset($_GET['apartment'])) : ?>
+            <section class="apartment_section">
+                <div class="wrapper">
+                    <div class="apartment">
+                        <div class="ap_status"><?php echo $apartment['status'] ?></div>
+                        <img class="ap_photo" src="../img/apartments/<?php echo $apartment['photo'] ?>">
+                        <div class="ap_info">
+                            <h2 class="api_name"><?php echo $apartment['name'] ?></h2>
+                            <p class="api_address"><?php echo $apartment['address']?></p>
+                            <p class="api_description"><?php echo $apartment['description']?></p>
+                            <p class="api_price"><?php echo number_format($apartment['price'], 0, ',', ' ') ?> ₽ <?php if ($apartment['status'] == 'Аренда') { echo '<span>/ мес.</span>'; } ?></p>
+                            <div class="api_views">
+                                <img class="apiv_img" src="../img/views.svg">
+                                <p><?php echo $apartment['views'] ?></p>
+                            </div>
+                            <button class="api_button">Связаться</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        <?php else : ?>
+
+        <?php endif ?>
         <footer>
             <div class="wrapper">
                 <div class="footer">
