@@ -43,19 +43,19 @@
                     <div class="sb_items">
                         <a class="sb_item" href="#">
                             <img class="sbi_img" src="../img/key.svg">
-                            <h4 class="sbi_h4">Купить</h4>
+                            <h4 class="sbi_h4">Квартиры</h4>
                         </a>
                         <a class="sb_item" href="#">
                             <img class="sbi_img" src="../img/krovate.svg">
-                            <h4 class="sbi_h4">Снять</h4>
+                            <h4 class="sbi_h4">Комнаты</h4>
                         </a>
                         <a class="sb_item" href="#">
                             <img class="sbi_img" src="../img/dome.svg">
-                            <h4 class="sbi_h4">Новостройки</h4>
+                            <h4 class="sbi_h4">Коммерческая недвижимость</h4>
                         </a>
                         <a class="sb_item" href="#">
                             <img class="sbi_img" src="../img/home.svg">
-                            <h4 class="sbi_h4">Дома и участки</h4>
+                            <h4 class="sbi_h4">Гаражи</h4>
                         </a>
                     </div>
                 </div>

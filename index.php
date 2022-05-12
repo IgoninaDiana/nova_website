@@ -33,9 +33,39 @@
                         <h1 class="wt_h1">NOVA.RU — это ...</h1>
                         <p class="wt_p">Достоверная база данных о продаже</br>и аренде жилой недвижимости</p>
                         <div class="wt_button">
-                            <a class="wtb_a" href="#">Перейти к поиску</a>
                             <a class="wtb_a" href="#">Разместить объявление</a>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="search_section">
+            <div class="wrapper">
+                <div class="search">
+                    <div class="s_blok">
+                        <h3 class="sb_h3">Тип недвижимости</h3>
+                        <select class="sb_select" id="">
+                            <option selected value="">Любая</option>
+                            <option value="">Квартиры</option>
+                            <option value="">Комнаты</option>
+                            <option value="">Гаражи</option>
+                            <option value="">Коммерческая недвижимость</option>
+                        </select>
+                    </div>
+                    <div class="s_blok s_blok_search">
+                        <h3 class="sb_h3">Поиск по объявлениям</h3>
+                        <input class="sb_input" type="text" placeholder="Введите текст для поиска">
+                    </div>
+                    <div class="s_blok">
+                        <h3 class="sb_h3">Бюджет поиска</h3>
+                        <div class="sb_price">
+                            <input class="sbp_input" type="number" placeholder="От 0 ₽">
+                            <p class="cbp_p">-</p>
+                            <input class="sbp_input" type="number" placeholder="До 40 000 000 ₽">
+                        </div>
+                    </div>
+                    <div class="s_blok">
+                        <button class="sb_button">Найти</button>
                     </div>
                 </div>
             </div>
@@ -50,10 +80,13 @@
                 </div>
             </div>
         </section>
-        <section class="news_section">
+        <section class="apartments_section">
             <div class="wrapper">
-                <div class="news">
-                    <h2>Новости</h2>
+                <div class="apartments">
+                    <h2>Рекомендованные объявления</h2>
+                    <div class="apa_items">
+                        <!-- AJAX ответ -->
+                    </div>
                 </div>
             </div>
         </section>
@@ -63,7 +96,6 @@
                     <div class="f_site">
                         <a href="/"><img class="fs_img" src="img/logo_3.svg"></a>
                         <p class="fs_p">В базе NOVA.RU вы найдёте недвижимость в продаже и аренду. Все объявления проверены профессиональными модераторами. Для удобства вы можете загрузить мобильное приложение на iPhone и Android, а также легко находить объекты благодаря структурированному каталогу и наличию поиска на нашем сайте. Для облегчения поиска мы реализовали систему рекомендаций похожих объявлений.</p>
-                        <p>Сайт сделан на базе API <a class="fsp_a" href="cian.ru" target="_blank">cian.ru</a></p>
                     </div>
                     <div class="f_studio">
                         <img src="img/logo_2.svg">
@@ -81,9 +113,25 @@
                 success: function(data) {
                     $('.r_items').empty();
                     let i = 0;
-                    while (i < data['response']['newbuildings'].length) {
+                    for (i in data['response']['newbuildings']) {
                         $('.r_items').append('<div class="r_item"><div class="ri_text"><h3 class="rit_h3">' + data['response']['newbuildings'][i]['name'] + '</h3><p class="rit_price">' + data['response']['newbuildings'][i]['priceDisplay'] + '</p><p class="rit_address">' + data['response']['newbuildings'][i]['fullAddress'] + '</p></div><img class="ri_img" src="' + data['response']['newbuildings'][i]['image']['fullUrl'] + '"></div>');
-                        i++;
+                    }
+                }
+            });
+
+            $.ajax({
+                url: '/api/',
+                method: 'get',
+                dataType: 'json',
+                data: {query: 'apartments', limit: 4},
+                success: function(data) {
+                    $('.apa_items').empty();
+                    let i = 0;
+                    for (i in data['apartments']) {
+                        $('.apa_items').append('<a class="apa_item" href="/apartments?apartment=' + data['apartments'][i]['id'] + '"><div class="apai_info"><img class="apai_info_img" src="/img/apartments/' + data['apartments'][i]['photo'] + '"><div class="apai_info_text"><p class="apai_status">' + data['apartments'][i]['status'] + '</p><h3 class="apai_name">' + data['apartments'][i]['name'] + '</h3></div></div><div class="apai_text"><p class="apai_price">' + data['apartments'][i]['price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ' ₽ <span class="apai_span" id="apai_span_' + data['apartments'][i]['id'] + '"></span></p><p class="apai_address">' + data['apartments'][i]['address'] + '</p></div></a>');
+                        if (data['apartments'][i]['status'] == 'Аренда') {
+                            $('#apai_span_' + data['apartments'][i]['id']).append('/ мес.');
+                        }
                     }
                 }
             });

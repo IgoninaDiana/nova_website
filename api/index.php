@@ -83,3 +83,25 @@
         $json = json_encode($arr);
         echo $json;
     }
+
+    if ($_GET['query'] == 'apartments') {
+        if ($_GET['limit'] > 0) {
+            $apartments = R::findAll('apartments', 'ORDER BY id DESC LIMIT '.$_GET['limit']);
+            $apartments_arr = array();
+            foreach ($apartments as $apartment) {
+                array_push($apartments_arr, ['id'=>$apartment['id'], 'photo'=>$apartment['photo'], 'status'=>$apartment['status'], 'name'=>$apartment['name'], 'price'=>$apartment['price'], 'address'=>$apartment['address']]);
+            }
+            $arr = ['status'=>'ok', 'apartments'=>$apartments_arr];
+            $json = json_encode($arr);
+            echo $json;
+        } else {
+            $apartments = R::findAll('news', 'ORDER BY id DESC');
+            $apartments_arr = array();
+            foreach ($apartments as $apartment) {
+                array_push($apartments_arr, ['id'=>$apartment['id'], 'photo'=>$apartment['photo'], 'status'=>$apartment['status'], 'name'=>$apartment['name'], 'price'=>$apartment['price'], 'address'=>$apartment['address']]);
+            }
+            $arr = ['status'=>'ok', 'apartments'=>$apartments_arr];
+            $json = json_encode($arr);
+            echo $json;
+        }
+    }
