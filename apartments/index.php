@@ -78,7 +78,47 @@
                 }
             </script>
         <?php else : ?>
-
+            <section class="search_section" style="margin-top: 120px; margin-bottom: -20px;">
+                <div class="wrapper">
+                    <div class="search">
+                        <div class="s_blok">
+                            <h3 class="sb_h3">Тип недвижимости</h3>
+                            <select class="sb_select" id="property_type">
+                                <option selected value="">Любая</option>
+                                <option value="apartments">Квартиры</option>
+                                <option value="rooms">Комнаты</option>
+                                <option value="garages">Гаражи</option>
+                                <option value="commercial">Коммерческая недвижимость</option>
+                            </select>
+                        </div>
+                        <div class="s_blok s_blok_search">
+                            <h3 class="sb_h3">Поиск по объявлениям</h3>
+                            <input id="search" class="sb_input" type="text" placeholder="Введите текст для поиска">
+                        </div>
+                        <div class="s_blok">
+                            <h3 class="sb_h3">Бюджет поиска</h3>
+                            <div class="sb_price">
+                                <input id="budget_ot" class="sbp_input" type="number" min="0" placeholder="От 0 ₽">
+                                <p class="cbp_p">-</p>
+                                <input id="budget_do" class="sbp_input" type="number" min="0" placeholder="До 40 000 000 ₽">
+                            </div>
+                        </div>
+                        <div class="s_blok">
+                            <button class="sb_button" onclick="search()">Найти</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="apartments_section">
+                <div class="wrapper">
+                    <div class="apartments">
+                        <h2>Результаты поиска</h2>
+                        <div class="apa_items">
+                            <!-- AJAX ответ -->
+                        </div>
+                    </div>
+                </div>
+            </section>
         <?php endif ?>
         <footer>
             <div class="wrapper">
@@ -88,11 +128,48 @@
                         <p class="fs_p">В базе NOVA.RU вы найдёте недвижимость в продаже и аренду. Все объявления проверены профессиональными модераторами. Для удобства вы можете загрузить мобильное приложение на iPhone и Android, а также легко находить объекты благодаря структурированному каталогу и наличию поиска на нашем сайте. Для облегчения поиска мы реализовали систему рекомендаций похожих объявлений.</p>
                     </div>
                     <div class="f_studio">
-                        <img src="../img/logo_2.svg">
+                        <img class="f_img" src="../img/logo_2.svg">
                         <p>© “NWS” - NIGHT WEB-STUDIO, 2021-<?php echo date("Y")?></br>© Герасимов Андрей Сергеевич</p>
                     </div>
                 </div>
             </div>
         </footer>
+        <script>
+            $.ajax({
+                url: '/api/',
+                method: 'get',
+                dataType: 'json',
+                data: {query: 'apartments', property_type: $('#property_type').val(), search: $('#search').val(), budget_ot: $('#budget_ot').val(), budget_do: $('#budget_do').val()},
+                success: function(data) {
+                    $('.apa_items').empty();
+                    let i = 0;
+                    for (i in data['apartments']) {
+                        $('.apa_items').append('<a class="apa_item" href="/apartments?apartment=' + data['apartments'][i]['id'] + '"><div class="apai_info"><img class="apai_info_img" src="/img/apartments/' + data['apartments'][i]['photo'] + '"><div class="apai_info_text"><p class="apai_status">' + data['apartments'][i]['status'] + '</p><h3 class="apai_name">' + data['apartments'][i]['name'] + '</h3></div></div><div class="apai_text"><p class="apai_price">' + data['apartments'][i]['price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ' ₽ <span class="apai_span" id="apai_span_' + data['apartments'][i]['id'] + '"></span></p><p class="apai_address">' + data['apartments'][i]['address'] + '</p></div></a>');
+                        if (data['apartments'][i]['status'] == 'Аренда') {
+                            $('#apai_span_' + data['apartments'][i]['id']).append('/ мес.');
+                        }
+                    }
+                }
+            });
+
+            function search() {
+                $.ajax({
+                    url: '/api/',
+                    method: 'get',
+                    dataType: 'json',
+                    data: {query: 'apartments', property_type: $('#property_type').val(), search: $('#search').val(), budget_ot: $('#budget_ot').val(), budget_do: $('#budget_do').val()},
+                    success: function(data) {
+                        $('.apa_items').empty();
+                        let i = 0;
+                        for (i in data['apartments']) {
+                            $('.apa_items').append('<a class="apa_item" href="/apartments?apartment=' + data['apartments'][i]['id'] + '"><div class="apai_info"><img class="apai_info_img" src="/img/apartments/' + data['apartments'][i]['photo'] + '"><div class="apai_info_text"><p class="apai_status">' + data['apartments'][i]['status'] + '</p><h3 class="apai_name">' + data['apartments'][i]['name'] + '</h3></div></div><div class="apai_text"><p class="apai_price">' + data['apartments'][i]['price'].toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") + ' ₽ <span class="apai_span" id="apai_span_' + data['apartments'][i]['id'] + '"></span></p><p class="apai_address">' + data['apartments'][i]['address'] + '</p></div></a>');
+                            if (data['apartments'][i]['status'] == 'Аренда') {
+                                $('#apai_span_' + data['apartments'][i]['id']).append('/ мес.');
+                            }
+                        }
+                    }
+                });
+            }
+        </script>
     </body>
 </html>

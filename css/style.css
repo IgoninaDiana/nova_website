@@ -354,7 +354,8 @@ header {
 
 .apa_items {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
     margin-top: 20px;
 }
 
@@ -368,6 +369,7 @@ header {
     background-color: #fff;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
     border-radius: 5px;
+    margin-bottom: 15px;
 }
 
 .apai_info {
@@ -816,4 +818,8 @@ footer {
     justify-content: flex-end;
     align-items: flex-end;
     text-align: right;
+}
+
+.f_img {
+    width: 300px;
 }

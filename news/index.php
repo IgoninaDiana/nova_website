@@ -96,7 +96,7 @@
                         <p>Сайт сделан на базе API <a class="fsp_a" href="cian.ru" target="_blank">cian.ru</a></p>
                     </div>
                     <div class="f_studio">
-                        <img src="../img/logo_2.svg">
+                        <img class="f_img" src="../img/logo_2.svg">
                         <p>© “NWS” - NIGHT WEB-STUDIO, 2021-<?php echo date("Y")?></br>© Герасимов Андрей Сергеевич</p>
                     </div>
                 </div>

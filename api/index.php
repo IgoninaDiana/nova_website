@@ -95,13 +95,31 @@
             $json = json_encode($arr);
             echo $json;
         } else {
-            $apartments = R::findAll('news', 'ORDER BY id DESC');
-            $apartments_arr = array();
-            foreach ($apartments as $apartment) {
-                array_push($apartments_arr, ['id'=>$apartment['id'], 'photo'=>$apartment['photo'], 'status'=>$apartment['status'], 'name'=>$apartment['name'], 'price'=>$apartment['price'], 'address'=>$apartment['address']]);
+            if ($_GET['budget_ot'] == '') {
+                $_GET['budget_ot'] = 0;
             }
-            $arr = ['status'=>'ok', 'apartments'=>$apartments_arr];
-            $json = json_encode($arr);
-            echo $json;
+            if ($_GET['budget_do'] == '') {
+                $_GET['budget_do'] = 999999999999999999999999999;
+            }
+
+            if ($_GET['search'] == '') {
+                $apartments = R::findAll('apartments', 'WHERE price BETWEEN '.$_GET["budget_ot"].' AND '.$_GET["budget_do"].' ORDER BY id DESC');
+                $apartments_arr = array();
+                foreach ($apartments as $apartment) {
+                    array_push($apartments_arr, ['id'=>$apartment['id'], 'photo'=>$apartment['photo'], 'status'=>$apartment['status'], 'name'=>$apartment['name'], 'price'=>$apartment['price'], 'address'=>$apartment['address']]);
+                }
+                $arr = ['status'=>'ok', 'apartments'=>$apartments_arr];
+                $json = json_encode($arr);
+                echo $json;
+            } else {
+                $apartments = R::findAll('apartments', 'WHERE name LIKE "%'.$_GET['search'].'%" AND price BETWEEN '.$_GET["budget_ot"].' AND '.$_GET["budget_do"].' ORDER BY id DESC');
+                $apartments_arr = array();
+                foreach ($apartments as $apartment) {
+                    array_push($apartments_arr, ['id'=>$apartment['id'], 'photo'=>$apartment['photo'], 'status'=>$apartment['status'], 'name'=>$apartment['name'], 'price'=>$apartment['price'], 'address'=>$apartment['address']]);
+                }
+                $arr = ['status'=>'ok', 'apartments'=>$apartments_arr];
+                $json = json_encode($arr);
+                echo $json;
+            }
         }
     }
